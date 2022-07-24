@@ -11,13 +11,13 @@ import SwiftUI
 struct CriteriaModalView: View {
     @Environment(\.dismiss) var dismiss
     
-    @State var title = ""
-    @State var imageTitle = ""
+    @Binding var title: String
+    @State var imageTitle = "circle"
     @State var contentString = ""
     @State var contentStringArr: [String] = [
         "Speaking pace is a measure of the number of speech units of a given type produced within a given amount of time",
-        "wawawa",
-        "gagagagagag"
+        "The term word fillers refers to short words or phrases that are used in speech for creating a pause or to indicate someone isn't finished speaking",
+        "Vocal tone in public speaking is actually the way a person is speaking to someone. In essence, it's how speaker sound when they say words out loud."
     ]
 
     var body: some View {
@@ -41,6 +41,14 @@ struct CriteriaModalView: View {
             if title == "Speaking Pace" {
                 imageTitle = "speedometer"
                 contentString = contentStringArr[0]
+            }
+            else if title == "Word Fillers" {
+                imageTitle = "w.circle"
+                contentString = contentStringArr[1]
+            }
+            else if title == "Vocal Tone" {
+                imageTitle = "waveform.circle"
+                contentString = contentStringArr[2]
             }
         }
         

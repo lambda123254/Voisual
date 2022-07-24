@@ -60,6 +60,7 @@ struct ContentView: View {
     
     @State var toggleRecordButton = false
     @State var toggleCriteriaView = false
+    @State var criteriaTitle = ""
     var body: some View {
         ZStack {
             Color.init(hex: "EDEADC").ignoresSafeArea()
@@ -94,6 +95,7 @@ struct ContentView: View {
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
                     .onTapGesture(count: 1){
+                        criteriaTitle = "Speaking Pace"
                         toggleCriteriaView.toggle()
                     }
 //                    .sheet(isPresented: $toggleCriteriaView) {
@@ -113,6 +115,10 @@ struct ContentView: View {
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
+                    .onTapGesture(count: 1){
+                        criteriaTitle = "Word Fillers"
+                        toggleCriteriaView.toggle()
+                    }
                     
                     HStack {
                         Text(Image(systemName: "waveform.circle"))
@@ -128,6 +134,10 @@ struct ContentView: View {
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
+                    .onTapGesture(count: 1){
+                        criteriaTitle = "Vocal Tone"
+                        toggleCriteriaView.toggle()
+                    }
                 }
                 Spacer().ignoresSafeArea()
                 Text("Tap mic button to start practicing your speech")
@@ -196,12 +206,12 @@ struct ContentView: View {
                 
             }
             HalfASheet(isPresented: $toggleCriteriaView) {
-                CriteriaModalView(title: "Speaking Pace")
-                
+                CriteriaModalView(title: $criteriaTitle)
             }
             .height(.proportional(0.4))
             .backgroundColor(.white)
             .closeButtonColor(.white)
+            .ignoresSafeArea()
         }
         
         

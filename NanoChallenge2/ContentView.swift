@@ -17,8 +17,8 @@ struct BarView: View {
     @State var barHeight: Float
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
-            .fill(.blue)
-            .frame(width: 5, height: CGFloat(barHeight), alignment: .center)
+            .fill(Color.init(hex: "630000"))
+            .frame(width: 3, height: CGFloat(barHeight), alignment: .center)
     }
 
 }
@@ -61,24 +61,52 @@ struct ContentView: View {
     @State var toggleRecordButton = false
     @State var toggleCriteriaView = false
     @State var criteriaTitle = ""
+    @State var offsetMove: CGFloat = -400
     var body: some View {
         ZStack {
             Color.init(hex: "EDEADC").ignoresSafeArea()
             VStack {
                 HStack {
-                    Text("**Home**")
-                        .padding()
-                        .padding(.top, 20)
-                        .font(.largeTitle)
+                    Text("00:39")
+                        .foregroundColor(.white)
+                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .background(Circle().fill(Color(hex: "630000")).frame(width: 200, height: 200, alignment:.center))
+                }
+                //AUDIO GRAPH
+                HStack {
+                    Spacer()
+                    ForEach(barArr, id: \.self) { value in
+                        BarView(barHeight: value)
+                    }
+                }
+                
+            }
+            VStack {
+                HStack {
+                    if !toggleRecordButton {
+                        Text("**Home**")
+                            .padding()
+                            .padding(.top, 20)
+                            .font(.largeTitle)
+                    }
+                    else {
+                        Text("**Recording**")
+                            .padding()
+                            .padding(.top, 20)
+                            .font(.largeTitle)
+                    }
 
                     Spacer()
                 }
+
                 HStack {
                     Text("Your speech will be scored based on this criteria")
                         .padding(.leading)
                         .font(.title3)
                     Spacer()
                 }
+                .offset(x: toggleRecordButton ? offsetMove : 0, y: 0)
+
                 VStack {
                     HStack {
                         Text(Image(systemName: "speedometer"))
@@ -98,9 +126,8 @@ struct ContentView: View {
                         criteriaTitle = "Speaking Pace"
                         toggleCriteriaView.toggle()
                     }
-//                    .sheet(isPresented: $toggleCriteriaView) {
-//                        CriteriaModalView()
-//                    }
+                    .offset(x: toggleRecordButton ? offsetMove : 0, y: 0)
+
                     HStack {
                         Text(Image(systemName: "w.circle"))
                             .foregroundColor(Color.init(hex: "630000"))
@@ -119,6 +146,7 @@ struct ContentView: View {
                         criteriaTitle = "Word Fillers"
                         toggleCriteriaView.toggle()
                     }
+                    .offset(x: toggleRecordButton ? offsetMove : 0, y: 0)
                     
                     HStack {
                         Text(Image(systemName: "waveform.circle"))
@@ -138,6 +166,8 @@ struct ContentView: View {
                         criteriaTitle = "Vocal Tone"
                         toggleCriteriaView.toggle()
                     }
+                    .offset(x: toggleRecordButton ? offsetMove : 0, y: 0)
+
                 }
                 Spacer().ignoresSafeArea()
                 Text("Tap mic button to start practicing your speech")
@@ -145,6 +175,7 @@ struct ContentView: View {
                     .font(.title3)
                     .foregroundColor(Color.init(hex: "7F7F7F"))
                     .multilineTextAlignment(.center)
+                    .offset(x: toggleRecordButton ? offsetMove : 0, y: 0)
                 HStack {
                     Spacer()
                     Button(action: {
@@ -154,9 +185,12 @@ struct ContentView: View {
                             recTask?.cancel()
                         } else {
                             print("Start Recording")
-//                            startRecording()
-                            toggleRecordButton.toggle()
+                            startRecording()
+                            withAnimation(.easeInOut(duration: 0.3)){
+                                toggleRecordButton.toggle()
+                            }
                         }
+                        
                     }, label: {
                         Text(Image(systemName: "mic"))
                             .padding(20)
@@ -172,16 +206,6 @@ struct ContentView: View {
                 .padding(.top, 10)
                 .background(Rectangle().ignoresSafeArea())
                 .foregroundColor(Color.init(hex: "D8B7A3"))
-
-                    
-                
-                //AUDIO GRAPH
-//                HStack {
-//                    Spacer()
-//                    ForEach(barArr, id: \.self) { value in
-//                        BarView(barHeight: value)
-//                    }
-//                }
 
             }
             .onAppear {
@@ -205,6 +229,8 @@ struct ContentView: View {
                 //======================
                 
             }
+            
+            
             HalfASheet(isPresented: $toggleCriteriaView) {
                 CriteriaModalView(title: $criteriaTitle)
             }
@@ -213,6 +239,7 @@ struct ContentView: View {
             .closeButtonColor(.white)
             .ignoresSafeArea()
         }
+        
         
         
     }
@@ -263,11 +290,16 @@ struct ContentView: View {
         }
         // ==========================
         let recordingFormat = inputNode.outputFormat(forBus: 0)
-        let barCountMax = 29
+        let barCountMax = 34
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, time) in
             audioMetering(buffer: buffer)
             barValue = 100 + averagePowerForChannel0
-
+            print(barValue)
+            
+            if barValue < 60 {
+                barValue = barValue / 10
+            }
+            
             if barArr.count > barCountMax{
                 barArr.removeFirst()
             }
@@ -332,7 +364,6 @@ class ResultsObserver: NSObject, SNResultsObserving {
             let classification = result.classifications.first else { return }
         
         let confidence = classification.confidence * 100.0
-        print(confidence)
         if confidence > 60 {
         
         }

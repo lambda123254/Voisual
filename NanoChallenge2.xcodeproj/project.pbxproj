@@ -14,6 +14,7 @@
 		B5A592BF288AC4DB006ED928 /* WordFillersClassification.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B5A592BE288AC4DB006ED928 /* WordFillersClassification.mlmodel */; };
 		B5A592C1288C10C4006ED928 /* CriteriaModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */; };
 		B5A592CA288D139D006ED928 /* HalfASheet in Frameworks */ = {isa = PBXBuildFile; productRef = B5A592C9288D139D006ED928 /* HalfASheet */; };
+		B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A592CB288E29CB006ED928 /* ResultModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		B5928491288599B100AA14C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B5A592BE288AC4DB006ED928 /* WordFillersClassification.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = WordFillersClassification.mlmodel; sourceTree = "<group>"; };
 		B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaModalView.swift; sourceTree = "<group>"; };
+		B5A592CB288E29CB006ED928 /* ResultModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				B5A592BE288AC4DB006ED928 /* WordFillersClassification.mlmodel */,
 				B592848528858EBC00AA14C4 /* ContentView.swift */,
 				B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */,
+				B5A592CB288E29CB006ED928 /* ResultModalView.swift */,
 				B592848728858EBD00AA14C4 /* Assets.xcassets */,
 				B592848928858EBD00AA14C4 /* Preview Content */,
 			);
@@ -155,6 +158,7 @@
 			files = (
 				B592848628858EBC00AA14C4 /* ContentView.swift in Sources */,
 				B5A592C1288C10C4006ED928 /* CriteriaModalView.swift in Sources */,
+				B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */,
 				B5A592BF288AC4DB006ED928 /* WordFillersClassification.mlmodel in Sources */,
 				B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */,
 			);

@@ -46,11 +46,12 @@ struct ContentView: View {
     @State var recTask: SFSpeechRecognitionTask?
     @State var audioEngine = AVAudioEngine()
     @State var textString = ""
+    @State var textArr: [String] = []
     @State var averagePowerForChannel0: Float = 0
     @State var averagePowerForChannel1: Float = 0
     @State var barValue: Float = 0.0
     @State var barArr: [Float] = []
-    let LEVEL_LOWPASS_TRIG:Float32 = 0.30
+    let LEVEL_LOWPASS_TRIG:Float32 = 0.5
     
     @State var soundClassifier = WordFillersClassification.self
     @State var inputFormat: AVAudioFormat!
@@ -59,28 +60,148 @@ struct ContentView: View {
     let analysisQueue = DispatchQueue(label: "com.apple.AnalysisQueue")
     
     @State var toggleRecordButton = false
+    @State var toggleShowResult = false
     @State var toggleCriteriaView = false
     @State var criteriaTitle = ""
     @State var offsetMove: CGFloat = -400
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var second = 0
+    @State var minute = 0
+    @State var minuteRound = "0"
+    @State var secondRound = "0"
+
+    @State var wfArr: [String] = [
+        "absolutely",
+        "actual",
+        "actually",
+        "amazing",
+        "anyway",
+        "apparently",
+        "approximately",
+        "badly",
+        "basically",
+        "begin",
+        "certainly",
+        "clearly",
+        "completely",
+        "definitely",
+        "easily",
+        "effectively",
+        "entirely",
+        "especially",
+        "essentially",
+        "exactly",
+        "extremely",
+        "fairly",
+        "frankly",
+        "frequently",
+        "fully",
+        "generally",
+        "hardly",
+        "heavily",
+        "highly",
+        "hopefully",
+        "just",
+        "largely",
+        "like",
+        "literally",
+        "maybe",
+        "might",
+        "most",
+        "mostly",
+        "much",
+        "necessarily",
+        "nicely",
+        "obviously",
+        "ok",
+        "okay",
+        "particularly",
+        "perhaps",
+        "possibly",
+        "practically",
+        "precisely",
+        "primarily",
+        "probably",
+        "quite",
+        "rather",
+        "real",
+        "really",
+        "relatively",
+        "right",
+        "seriously",
+        "significantly",
+        "simply",
+        "slightly",
+        "so",
+        "specifically",
+        "start",
+        "strongly",
+        "stuff",
+        "surely",
+        "things",
+        "too",
+        "totally",
+        "truly",
+        "try",
+        "typically",
+        "ultimately",
+        "usually",
+        "very",
+        "virtually",
+        "well",
+        "whatever",
+        "whenever",
+        "wherever",
+        "whoever",
+        "widely"
+      ]
+    
+    @State var wpm = 0
+    @State var wf = 0
     var body: some View {
         ZStack {
-            Color.init(hex: "EDEADC").ignoresSafeArea()
-            VStack {
+            Color.white.ignoresSafeArea()
+            if toggleRecordButton {
                 HStack {
-                    Text("00:39")
+                    Text("\(minuteRound)\(minute):\(secondRound)\(second)")
                         .foregroundColor(.white)
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .background(Circle().fill(Color(hex: "630000")).frame(width: 200, height: 200, alignment:.center))
+                        .onReceive(timer) { input in
+                            
+                            if second == 0 {
+                                secondRound = "0"
+                            }
+                            
+                            if second > 8 {
+                                secondRound = ""
+                            }
+                            
+                            if second == 59 {
+                                second = 0
+                                minute += 1
+                            }
+                            else {
+                                second += 1
+
+                            }
+                        }
                 }
-                //AUDIO GRAPH
-                HStack {
-                    Spacer()
-                    ForEach(barArr, id: \.self) { value in
-                        BarView(barHeight: value)
+                .padding(.bottom, 250)
+                VStack {
+                    //AUDIO GRAPH
+                    HStack {
+                        Spacer()
+                        ForEach(barArr, id: \.self) { value in
+                            BarView(barHeight: value)
+                        }
                     }
+                    
                 }
-                
+                .padding(.top, 250)
             }
+            
             VStack {
                 HStack {
                     if !toggleRecordButton {
@@ -113,12 +234,12 @@ struct ContentView: View {
                             .foregroundColor(Color.init(hex: "630000"))
                             .font(Font.system(size: 30))
                         Text("Speaking Pace")
-                            .foregroundColor(Color.init(hex: "7F7F7F"))
+                            .foregroundColor(.black)
                         Spacer()
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.init(hex: "EDEADC"))
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
@@ -133,12 +254,12 @@ struct ContentView: View {
                             .foregroundColor(Color.init(hex: "630000"))
                             .font(Font.system(size: 30))
                         Text("Word Fillers")
-                            .foregroundColor(Color.init(hex: "7F7F7F"))
+                            .foregroundColor(.black)
                         Spacer()
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.init(hex: "EDEADC"))
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
@@ -153,12 +274,12 @@ struct ContentView: View {
                             .foregroundColor(Color.init(hex: "630000"))
                             .font(Font.system(size: 30))
                         Text("Vocal Tone")
-                            .foregroundColor(Color.init(hex: "7F7F7F"))
+                            .foregroundColor(.black)
                         Spacer()
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.init(hex: "EDEADC"))
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
@@ -170,7 +291,7 @@ struct ContentView: View {
 
                 }
                 Spacer().ignoresSafeArea()
-                Text("Tap mic button to start practicing your speech")
+                Text("Tap record button to start practicing your speech")
                     .padding(20)
                     .font(.title3)
                     .foregroundColor(Color.init(hex: "7F7F7F"))
@@ -183,6 +304,11 @@ struct ContentView: View {
                             recRequest?.endAudio()
                             audioEngine.stop()
                             recTask?.cancel()
+                            withAnimation(.easeInOut(duration: 0.3)){
+                                toggleRecordButton.toggle()
+                                toggleShowResult.toggle()
+
+                            }
                         } else {
                             print("Start Recording")
                             startRecording()
@@ -194,8 +320,8 @@ struct ContentView: View {
                     }, label: {
                         Text(Image(systemName: "mic"))
                             .padding(20)
-                            .foregroundColor(.white)
-                            .opacity(toggleRecordButton ? 0 : 1)
+                            .foregroundColor(Color.init(hex: "630000"))
+                            .opacity(0)
                             .background(RoundedRectangle(cornerRadius: toggleRecordButton ? 5 : 75).frame(width: toggleRecordButton ? 35 : nil, height: toggleRecordButton ? 35 : nil, alignment: .center).animation(.easeInOut))
                             .foregroundColor(Color.init(hex: "630000"))
                             .font(.system(size: 25))
@@ -230,6 +356,14 @@ struct ContentView: View {
                 
             }
             
+            if toggleShowResult {
+                ResultModalView(speakingPace: $wpm, wordFillers: $wf)
+                    .onAppear {
+                        textArr = textString.split(separator: " ").map({String($0)})
+                        calculateWordsPerMinute()
+                        wordFillersDetection()
+                    }
+            }
             
             HalfASheet(isPresented: $toggleCriteriaView) {
                 CriteriaModalView(title: $criteriaTitle)
@@ -244,13 +378,27 @@ struct ContentView: View {
         
     }
     
+    func calculateWordsPerMinute() {
+        wpm = textArr.count * 60 / second
+    }
+    
+    func wordFillersDetection() {
+        for i in 0 ..< textArr.count {
+            for j in 0 ..< wfArr.count {
+                if textArr[i] == wfArr[j] {
+                    wf += 1
+                }
+            }
+        }
+    }
+    
     func startRecording() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            print("audioSession properties weren't set because of an error.")
+            print("audioSession properties werent set because of an error.")
         }
         
         let inputNode = audioEngine.inputNode
@@ -293,13 +441,14 @@ struct ContentView: View {
         let barCountMax = 34
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, time) in
             audioMetering(buffer: buffer)
-            barValue = 100 + averagePowerForChannel0
-            print(barValue)
-            
-            if barValue < 60 {
-                barValue = barValue / 10
+            barValue = 550 + averagePowerForChannel0
+            if barValue < 90 {
+                barValue = 10
             }
-            
+            else {
+                barValue /= 4
+            }
+
             if barArr.count > barCountMax{
                 barArr.removeFirst()
             }
@@ -319,7 +468,7 @@ struct ContentView: View {
         do {
             try audioEngine.start()
         } catch {
-            print("audioEngine couldn't start because of an error.")
+            print("audioEngine couldnt start because of an error.")
         }
         
     }
@@ -332,7 +481,7 @@ struct ContentView: View {
             vDSP_meamgv(samples,1 , &avgValue, inNumberFrames)
             var v:Float = -100
             if avgValue != 0 {
-                v = 20.0 * log10f(avgValue)
+                v = 200.0 * log10f(avgValue)
             }
             averagePowerForChannel0 = (self.LEVEL_LOWPASS_TRIG*v) + ((1-self.LEVEL_LOWPASS_TRIG)*self.averagePowerForChannel0)
             self.averagePowerForChannel1 = self.averagePowerForChannel0

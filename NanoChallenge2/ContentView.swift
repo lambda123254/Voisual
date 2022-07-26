@@ -12,6 +12,10 @@ import Accelerate
 import SoundAnalysis
 import HalfASheet
 
+class GlobalVariables: ObservableObject {
+    @Published var number: Int = 0
+    @Published var toggleShowResult = false
+}
 
 struct BarView: View {
     @State var barHeight: Float
@@ -159,6 +163,7 @@ struct ContentView: View {
     
     @State var wpm = 0
     @State var wf = 0
+    @StateObject var gv = GlobalVariables()
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
@@ -169,7 +174,7 @@ struct ContentView: View {
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .background(Circle().fill(Color(hex: "630000")).frame(width: 200, height: 200, alignment:.center))
                         .onReceive(timer) { input in
-                            
+                            gv.number += 1
                             if second == 0 {
                                 secondRound = "0"
                             }
@@ -306,7 +311,7 @@ struct ContentView: View {
                             recTask?.cancel()
                             withAnimation(.easeInOut(duration: 0.3)){
                                 toggleRecordButton.toggle()
-                                toggleShowResult.toggle()
+                                gv.toggleShowResult.toggle()
 
                             }
                         } else {
@@ -356,7 +361,7 @@ struct ContentView: View {
                 
             }
             
-            if toggleShowResult {
+            if gv.toggleShowResult {
                 ResultModalView(speakingPace: $wpm, wordFillers: $wf)
                     .onAppear {
                         textArr = textString.split(separator: " ").map({String($0)})

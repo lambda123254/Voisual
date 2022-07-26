@@ -14,7 +14,7 @@ struct ResultModalView: View {
     @State var stars = 5
     @Binding var speakingPace: Int
     @Binding var wordFillers: Int
-//    @Binding var vocalTone: Int
+    @ObservedObject var gv = GlobalVariables()
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea().opacity(0.5)
@@ -70,14 +70,16 @@ struct ResultModalView: View {
             .background(RoundedRectangle(cornerRadius: 10).fill(.white))
             
         }
+        .onTapGesture(){
+            print(gv.toggleShowResult)
+        }
         .onAppear {
-            print(speakingPace)
             calculateScore()
         }
     }
     
     func calculateScore() {
-//        print(speakingPace)
+        print(speakingPace)
 //        if speakingPace 
     }
 }

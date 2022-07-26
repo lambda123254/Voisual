@@ -12,13 +12,6 @@ import Accelerate
 import SoundAnalysis
 import HalfASheet
 
-class GlobalVariables: ObservableObject {
-    @Published var number: Int = 0
-    @Published var toggleShowResult = false
-    @Published var flatToneCounter: Float = 0.0
-    @Published var otherToneCounter: Float = 0.0
-}
-
 class VocalToneCounter {
     var flatToneCounter: Float
     var otherToneCounter: Float
@@ -38,33 +31,6 @@ class VocalToneCounter {
     
     func getFlatCounter() -> Float {
         return flatToneCounter
-    }
-}
-
-struct BarView: View {
-    @State var barHeight: Float
-    var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .fill(Color.init(hex: "630000"))
-            .frame(width: 3, height: CGFloat(barHeight), alignment: .center)
-    }
-
-}
-
-struct ConfettiView: View {
-    @State var animate = false
-    @State var xSpeed = Double.random(in: 0.7...2)
-    @State var zSpeed = Double.random(in: 1...2)
-    @State var anchor = CGFloat.random(in: 0...1).rounded()
-    
-    var body: some View {
-        Rectangle()
-            .frame(width: 20, height: 20, alignment: .center)
-            .onAppear(perform: { animate = true })
-            .rotation3DEffect(.degrees(animate ? 360:0), axis: (x: 1, y: 0, z: 0))
-            .animation(Animation.linear(duration: xSpeed).repeatForever(autoreverses: false), value: animate)
-            .rotation3DEffect(.degrees(animate ? 360:0), axis: (x: 0, y: 0, z: 1), anchor: UnitPoint(x: anchor, y: anchor))
-            .animation(Animation.linear(duration: zSpeed).repeatForever(autoreverses: false), value: animate)
     }
 }
 
@@ -189,7 +155,7 @@ struct ContentView: View {
     
     @State var wpm = 0
     @State var wf = 0
-    @StateObject var gv = GlobalVariables()
+    @StateObject var gv = VocalToneViewModel()
     var vt = VocalToneCounter(flatToneCounter: 0, otherToneCounter: 0)
  
     var body: some View {

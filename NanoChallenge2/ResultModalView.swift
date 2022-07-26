@@ -12,9 +12,30 @@ struct ResultModalView: View {
     @Environment(\.dismiss) var dismiss
     
     @State var stars = 5
-    @Binding var speakingPace: Int
-    @Binding var wordFillers: Int
-    @ObservedObject var gv = GlobalVariables()
+    var speakingPace: Int
+
+    @State var speakingPaceString = ""
+    init(speakingPace: Int) {
+        self.speakingPace = speakingPace
+        switch speakingPace {
+        case 0...80:
+            speakingPaceString = "Awful"
+        case 80...100:
+            speakingPaceString = "Bad"
+        case 100...120:
+            speakingPaceString = "Average"
+        case 120...130:
+            speakingPaceString = "Good"
+        case 130...150:
+            speakingPaceString = "Excellent"
+        case 150...170:
+            speakingPaceString = "Bad"
+        case 170...400:
+            speakingPaceString = "Awful"
+        default:
+            speakingPaceString = "n/a"
+        }
+    }
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea().opacity(0.5)
@@ -22,7 +43,7 @@ struct ResultModalView: View {
                 VStack {
                     Text("Great Job, your result is")
                         .padding(.bottom, 1)
-                    Text("Good")
+                    Text("\(speakingPaceString)")
                         .foregroundColor(Color(hex: "4F9536"))
                         .font(.system(size: 50, weight: .bold, design: .default))
                         .padding(.bottom, 2)
@@ -70,16 +91,7 @@ struct ResultModalView: View {
             .background(RoundedRectangle(cornerRadius: 10).fill(.white))
             
         }
-        .onTapGesture(){
-            print(gv.toggleShowResult)
-        }
-        .onAppear {
-            calculateScore()
-        }
+
     }
     
-    func calculateScore() {
-        print(speakingPace)
-//        if speakingPace 
-    }
 }

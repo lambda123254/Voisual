@@ -362,7 +362,7 @@ struct ContentView: View {
             }
             
             if gv.toggleShowResult {
-                ResultModalView(speakingPace: $wpm, wordFillers: $wf)
+                ResultModalView(speakingPace: wpm)
                     .onAppear {
                         textArr = textString.split(separator: " ").map({String($0)})
                         calculateWordsPerMinute()

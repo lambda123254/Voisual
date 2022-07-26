@@ -15,6 +15,30 @@ import HalfASheet
 class GlobalVariables: ObservableObject {
     @Published var number: Int = 0
     @Published var toggleShowResult = false
+    @Published var flatToneCounter: Float = 0.0
+    @Published var otherToneCounter: Float = 0.0
+}
+
+class VocalToneCounter {
+    var flatToneCounter: Float
+    var otherToneCounter: Float
+    
+    init(flatToneCounter: Float, otherToneCounter: Float) {
+        self.flatToneCounter = flatToneCounter
+        self.otherToneCounter = otherToneCounter
+    }
+    
+    func incrementFlat() {
+        flatToneCounter += 1
+    }
+    
+    func incrementOther() {
+        otherToneCounter += 1
+    }
+    
+    func getFlatCounter() -> Float {
+        return flatToneCounter
+    }
 }
 
 struct BarView: View {
@@ -74,6 +98,8 @@ struct ContentView: View {
     @State var minute = 0
     @State var minuteRound = "0"
     @State var secondRound = "0"
+    
+    
 
     @State var wfArr: [String] = [
         "absolutely",
@@ -164,6 +190,8 @@ struct ContentView: View {
     @State var wpm = 0
     @State var wf = 0
     @StateObject var gv = GlobalVariables()
+    var vt = VocalToneCounter(flatToneCounter: 0, otherToneCounter: 0)
+ 
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
@@ -174,7 +202,8 @@ struct ContentView: View {
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .background(Circle().fill(Color(hex: "630000")).frame(width: 200, height: 200, alignment:.center))
                         .onReceive(timer) { input in
-                            gv.number += 1
+                            print(vt.getFlatCounter())
+
                             if second == 0 {
                                 secondRound = "0"
                             }
@@ -513,13 +542,21 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 class ResultsObserver: NSObject, SNResultsObserving {
+    var vt = VocalToneCounter(flatToneCounter: 0.0, otherToneCounter: 0.0)
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult,
-            let classification = result.classifications.first else { return }
+            let classificationFlat = result.classifications.first else { return }
         
-        let confidence = classification.confidence * 100.0
-        if confidence > 60 {
+        let classificationOther = result.classifications[1]
         
+        let confidenceFlat = classificationFlat.confidence * 100.0
+        let confidenceOther = classificationOther.confidence * 100.0
+
+        if confidenceFlat > 80 {
+            vt.incrementFlat()
+        }
+        if confidenceOther > 80 {
+            vt.incrementOther()
         }
         
     }

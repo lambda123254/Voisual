@@ -62,9 +62,8 @@
 			children = (
 				B5928491288599B100AA14C4 /* Info.plist */,
 				B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */,
-				B592848528858EBC00AA14C4 /* ContentView.swift */,
-				B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */,
-				B5A592CB288E29CB006ED928 /* ResultModalView.swift */,
+				B5CAD451288FEDA8008A2A04 /* View */,
+				B5CAD453288FEDB4008A2A04 /* Viewmodel */,
 				B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */,
 				B592848728858EBD00AA14C4 /* Assets.xcassets */,
 				B592848928858EBD00AA14C4 /* Preview Content */,
@@ -78,6 +77,23 @@
 				B592848A28858EBD00AA14C4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B5CAD451288FEDA8008A2A04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */,
+				B5A592CB288E29CB006ED928 /* ResultModalView.swift */,
+				B592848528858EBC00AA14C4 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CAD453288FEDB4008A2A04 /* Viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Viewmodel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -16,9 +16,12 @@
 		B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A592CB288E29CB006ED928 /* ResultModalView.swift */; };
 		B5CAD450288FDB47008A2A04 /* VocalTone.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */; };
 		B5CAD455288FEDFB008A2A04 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD454288FEDFB008A2A04 /* ConfettiView.swift */; };
-		B5CAD458288FEE57008A2A04 /* VocalToneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD457288FEE57008A2A04 /* VocalToneViewModel.swift */; };
-		B5CAD45A288FEE7F008A2A04 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD459288FEE7F008A2A04 /* File.swift */; };
+		B5CAD458288FEE57008A2A04 /* VocalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD457288FEE57008A2A04 /* VocalViewModel.swift */; };
+		B5CAD45A288FEE7F008A2A04 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD459288FEE7F008A2A04 /* BarView.swift */; };
 		B5CAD45D288FEEB0008A2A04 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD45C288FEEB0008A2A04 /* SoundManager.swift */; };
+		B5CAD45F288FF195008A2A04 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD45E288FF195008A2A04 /* ColorExtension.swift */; };
+		B5CAD461288FF202008A2A04 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD460288FF202008A2A04 /* TimerView.swift */; };
+		B5CAD463288FF389008A2A04 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD462288FF389008A2A04 /* GlobalVariables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,9 +35,12 @@
 		B5A592CB288E29CB006ED928 /* ResultModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModalView.swift; sourceTree = "<group>"; };
 		B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = VocalTone.mlmodel; sourceTree = "<group>"; };
 		B5CAD454288FEDFB008A2A04 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
-		B5CAD457288FEE57008A2A04 /* VocalToneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalToneViewModel.swift; sourceTree = "<group>"; };
-		B5CAD459288FEE7F008A2A04 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		B5CAD457288FEE57008A2A04 /* VocalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalViewModel.swift; sourceTree = "<group>"; };
+		B5CAD459288FEE7F008A2A04 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		B5CAD45C288FEEB0008A2A04 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		B5CAD45E288FF195008A2A04 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		B5CAD460288FF202008A2A04 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		B5CAD462288FF389008A2A04 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +76,6 @@
 			children = (
 				B5928491288599B100AA14C4 /* Info.plist */,
 				B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */,
-				B5CAD45C288FEEB0008A2A04 /* SoundManager.swift */,
 				B5CAD45B288FEEA1008A2A04 /* Ultilities */,
 				B5CAD451288FEDA8008A2A04 /* View */,
 				B5CAD453288FEDB4008A2A04 /* Viewmodel */,
@@ -96,7 +101,8 @@
 				B5A592CB288E29CB006ED928 /* ResultModalView.swift */,
 				B592848528858EBC00AA14C4 /* ContentView.swift */,
 				B5CAD454288FEDFB008A2A04 /* ConfettiView.swift */,
-				B5CAD459288FEE7F008A2A04 /* File.swift */,
+				B5CAD459288FEE7F008A2A04 /* BarView.swift */,
+				B5CAD460288FF202008A2A04 /* TimerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,7 +110,8 @@
 		B5CAD453288FEDB4008A2A04 /* Viewmodel */ = {
 			isa = PBXGroup;
 			children = (
-				B5CAD457288FEE57008A2A04 /* VocalToneViewModel.swift */,
+				B5CAD457288FEE57008A2A04 /* VocalViewModel.swift */,
+				B5CAD462288FF389008A2A04 /* GlobalVariables.swift */,
 			);
 			path = Viewmodel;
 			sourceTree = "<group>";
@@ -120,6 +127,8 @@
 		B5CAD45B288FEEA1008A2A04 /* Ultilities */ = {
 			isa = PBXGroup;
 			children = (
+				B5CAD45C288FEEB0008A2A04 /* SoundManager.swift */,
+				B5CAD45E288FF195008A2A04 /* ColorExtension.swift */,
 			);
 			path = Ultilities;
 			sourceTree = "<group>";
@@ -205,10 +214,13 @@
 				B5A592C1288C10C4006ED928 /* CriteriaModalView.swift in Sources */,
 				B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */,
 				B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */,
-				B5CAD45A288FEE7F008A2A04 /* File.swift in Sources */,
-				B5CAD458288FEE57008A2A04 /* VocalToneViewModel.swift in Sources */,
+				B5CAD45A288FEE7F008A2A04 /* BarView.swift in Sources */,
+				B5CAD463288FF389008A2A04 /* GlobalVariables.swift in Sources */,
+				B5CAD461288FF202008A2A04 /* TimerView.swift in Sources */,
+				B5CAD458288FEE57008A2A04 /* VocalViewModel.swift in Sources */,
 				B5CAD450288FDB47008A2A04 /* VocalTone.mlmodel in Sources */,
 				B5CAD45D288FEEB0008A2A04 /* SoundManager.swift in Sources */,
+				B5CAD45F288FF195008A2A04 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

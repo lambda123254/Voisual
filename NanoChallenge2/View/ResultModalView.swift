@@ -29,6 +29,7 @@ struct ResultModalView: View {
     var overallResultString = ""
     var overallScore = 0
     var overallResultColor = Color.init(hex: "ffffff")
+    @StateObject var gv = GlobalVariables()
     init(speakingPace: Int, wordFillers: Int) {
         self.speakingPace = speakingPace
         self.wordFillers = wordFillers
@@ -197,11 +198,12 @@ struct ResultModalView: View {
             .background(RoundedRectangle(cornerRadius: 10).fill(.white))
             
         }
+        .onTapGesture {
+            print("Tapped")
+            gv.toggleShowResult.toggle()
+        }
 
     }
-    
-    func determineSpeakingPaceScore(value: Int) {
-        
-    }
+
     
 }

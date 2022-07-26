@@ -57,7 +57,7 @@ struct ContentView: View {
     @State var barArr: [Float] = []
     let LEVEL_LOWPASS_TRIG:Float32 = 0.5
     
-    @State var soundClassifier = WordFillersClassification.self
+    @State var soundClassifier = VocalTone.self
     @State var inputFormat: AVAudioFormat!
     @State var analyzer: SNAudioStreamAnalyzer!
     @State var resultObserver = ResultsObserver()
@@ -362,7 +362,7 @@ struct ContentView: View {
             }
             
             if gv.toggleShowResult {
-                ResultModalView(speakingPace: wpm)
+                ResultModalView(speakingPace: wpm, wordFillers: wf)
                     .onAppear {
                         textArr = textString.split(separator: " ").map({String($0)})
                         calculateWordsPerMinute()

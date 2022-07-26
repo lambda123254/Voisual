@@ -11,10 +11,10 @@
 		B592848628858EBC00AA14C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592848528858EBC00AA14C4 /* ContentView.swift */; };
 		B592848828858EBD00AA14C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B592848728858EBD00AA14C4 /* Assets.xcassets */; };
 		B592848B28858EBD00AA14C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B592848A28858EBD00AA14C4 /* Preview Assets.xcassets */; };
-		B5A592BF288AC4DB006ED928 /* WordFillersClassification.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B5A592BE288AC4DB006ED928 /* WordFillersClassification.mlmodel */; };
 		B5A592C1288C10C4006ED928 /* CriteriaModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */; };
 		B5A592CA288D139D006ED928 /* HalfASheet in Frameworks */ = {isa = PBXBuildFile; productRef = B5A592C9288D139D006ED928 /* HalfASheet */; };
 		B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A592CB288E29CB006ED928 /* ResultModalView.swift */; };
+		B5CAD450288FDB47008A2A04 /* VocalTone.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,9 +24,9 @@
 		B592848728858EBD00AA14C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B592848A28858EBD00AA14C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5928491288599B100AA14C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B5A592BE288AC4DB006ED928 /* WordFillersClassification.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = WordFillersClassification.mlmodel; sourceTree = "<group>"; };
 		B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaModalView.swift; sourceTree = "<group>"; };
 		B5A592CB288E29CB006ED928 /* ResultModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModalView.swift; sourceTree = "<group>"; };
+		B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = VocalTone.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +62,10 @@
 			children = (
 				B5928491288599B100AA14C4 /* Info.plist */,
 				B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */,
-				B5A592BE288AC4DB006ED928 /* WordFillersClassification.mlmodel */,
 				B592848528858EBC00AA14C4 /* ContentView.swift */,
 				B5A592C0288C10C4006ED928 /* CriteriaModalView.swift */,
 				B5A592CB288E29CB006ED928 /* ResultModalView.swift */,
+				B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */,
 				B592848728858EBD00AA14C4 /* Assets.xcassets */,
 				B592848928858EBD00AA14C4 /* Preview Content */,
 			);
@@ -159,8 +159,8 @@
 				B592848628858EBC00AA14C4 /* ContentView.swift in Sources */,
 				B5A592C1288C10C4006ED928 /* CriteriaModalView.swift in Sources */,
 				B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */,
-				B5A592BF288AC4DB006ED928 /* WordFillersClassification.mlmodel in Sources */,
 				B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */,
+				B5CAD450288FDB47008A2A04 /* VocalTone.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

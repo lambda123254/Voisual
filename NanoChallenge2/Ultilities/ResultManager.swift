@@ -17,17 +17,27 @@ class ResultManager {
     var wf = 0
     var textArr: [String] = []
     var sm: SoundManager
+    var timerViewModel = TimerViewModel()
     var delegate: ResultManagerProtocol?
+    var udm = UserDefaultManager()
     var second = 0
     var wpm = 0
     
     init(sm: SoundManager) {
         self.sm = sm
+        timerViewModel.delegate = self
     }
 
     func calculateWordsPerMinute(){
         textArr = sm.textString.split(separator: " ").map({String($0)})
-        wpm = textArr.count * 60 / 1
+        wpm = textArr.count * 60 / udm.getTimerSecond()
         self.delegate?.resultWpm(result: wpm)
+    }
+}
+
+extension ResultManager: TimerViewModelProtocol {
+    func getSecond(second: Int) {
+        self.second = second
+        print(second)
     }
 }

@@ -8,13 +8,17 @@
 import Foundation
 import SwiftUI
 
+protocol TimerViewModelProtocol {
+    func getSecond(second: Int)
+}
+
 class TimerViewModel: ObservableObject {
     @Published var second: Int = 0
     @Published var minute: Int = 0
     var timer = Timer()
-    
+    var delegate: TimerViewModelProtocol?
     func calulateTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
             if self.second == 59 {
                 self.second = 0
                 self.minute += 1
@@ -22,6 +26,7 @@ class TimerViewModel: ObservableObject {
             else {
                 self.second += 1
             }
+            self.delegate?.getSecond(second: second)
         }
     }
     func stopTimer() {

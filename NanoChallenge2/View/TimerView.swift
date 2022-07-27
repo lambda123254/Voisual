@@ -13,9 +13,11 @@ struct TimerView: View {
     @State var minute = 0
     @State var minuteRound = "0"
     @State var secondRound = "0"
-    
+    var udm = UserDefaultManager()
+
     @State var timer: Timer?
     @StateObject var timerViewModel = TimerViewModel()
+
 //    var gv: GlobalVariables
 //    
 //    init(gv: GlobalVariables) {
@@ -50,9 +52,16 @@ struct TimerView: View {
 ////                        timer.invalidate()
 ////                    }
 //                }
+                timerViewModel.delegate = self
                 second = timerViewModel.second
                 timerViewModel.calulateTimer()
                 
             }
+    }
+}
+
+extension TimerView: TimerViewModelProtocol {
+    func getSecond(second: Int) {
+        udm.setTimerSecond(second: second)
     }
 }

@@ -7,34 +7,51 @@
 
 import Foundation
 import SwiftUI
+
 struct TimerView: View {
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var second = 0
     @State var minute = 0
     @State var minuteRound = "0"
     @State var secondRound = "0"
+    
+    @State var timer: Timer?
+    @StateObject var timerViewModel = TimerViewModel()
+//    var gv: GlobalVariables
+//    
+//    init(gv: GlobalVariables) {
+//        self.gv = gv
+//    }
     var body: some View {
-        Text("\(minuteRound)\(minute):\(secondRound)\(second)")
+        Text("\(minuteRound)\(timerViewModel.minute):\(secondRound)\(timerViewModel.second)")
             .foregroundColor(.white)
             .font(.system(size: 40, weight: .bold, design: .default))
             .background(Circle().fill(Color.appRed).frame(width: 200, height: 200, alignment:.center))
-            .onReceive(timer) { input in
-                if second == 0 {
-                    secondRound = "0"
-                }
+            .onAppear() {
+//                self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+//                    if second == 0 {
+//                        secondRound = "0"
+//                    }
+//
+//                    if second > 8 {
+//                        secondRound = ""
+//                    }
+//
+//                    if second == 59 {
+//                        second = 0
+//                        minute += 1
+//                    }
+//                    else {
+//                        second += 1
+//
+//                    }
+//
+//                    print("timer running")
+////                    if gv.toggleShowResult {
+////                        timer.invalidate()
+////                    }
+//                }
+                timerViewModel.calulateTimer()
                 
-                if second > 8 {
-                    secondRound = ""
-                }
-                
-                if second == 59 {
-                    second = 0
-                    minute += 1
-                }
-                else {
-                    second += 1
-                    
-                }
             }
     }
 }

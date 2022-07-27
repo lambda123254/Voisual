@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B56446622891543C000A1E83 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56446612891543C000A1E83 /* TimerViewModel.swift */; };
 		B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */; };
 		B592848628858EBC00AA14C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592848528858EBC00AA14C4 /* ContentView.swift */; };
 		B592848828858EBD00AA14C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B592848728858EBD00AA14C4 /* Assets.xcassets */; };
@@ -16,15 +17,16 @@
 		B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A592CB288E29CB006ED928 /* ResultModalView.swift */; };
 		B5CAD450288FDB47008A2A04 /* VocalTone.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */; };
 		B5CAD455288FEDFB008A2A04 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD454288FEDFB008A2A04 /* ConfettiView.swift */; };
-		B5CAD458288FEE57008A2A04 /* VocalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD457288FEE57008A2A04 /* VocalViewModel.swift */; };
 		B5CAD45A288FEE7F008A2A04 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD459288FEE7F008A2A04 /* BarView.swift */; };
 		B5CAD45D288FEEB0008A2A04 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD45C288FEEB0008A2A04 /* SoundManager.swift */; };
 		B5CAD45F288FF195008A2A04 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD45E288FF195008A2A04 /* ColorExtension.swift */; };
 		B5CAD461288FF202008A2A04 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD460288FF202008A2A04 /* TimerView.swift */; };
 		B5CAD463288FF389008A2A04 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD462288FF389008A2A04 /* GlobalVariables.swift */; };
+		B5CAD4672890F7A4008A2A04 /* VocalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CAD4662890F7A4008A2A04 /* VocalViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B56446612891543C000A1E83 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B592848028858EBC00AA14C4 /* NanoChallenge2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoChallenge2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge2App.swift; sourceTree = "<group>"; };
 		B592848528858EBC00AA14C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,12 +37,12 @@
 		B5A592CB288E29CB006ED928 /* ResultModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModalView.swift; sourceTree = "<group>"; };
 		B5CAD44F288FDB47008A2A04 /* VocalTone.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = VocalTone.mlmodel; sourceTree = "<group>"; };
 		B5CAD454288FEDFB008A2A04 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
-		B5CAD457288FEE57008A2A04 /* VocalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalViewModel.swift; sourceTree = "<group>"; };
 		B5CAD459288FEE7F008A2A04 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		B5CAD45C288FEEB0008A2A04 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		B5CAD45E288FF195008A2A04 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		B5CAD460288FF202008A2A04 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		B5CAD462288FF389008A2A04 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		B5CAD4662890F7A4008A2A04 /* VocalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +112,9 @@
 		B5CAD453288FEDB4008A2A04 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B5CAD457288FEE57008A2A04 /* VocalViewModel.swift */,
 				B5CAD462288FF389008A2A04 /* GlobalVariables.swift */,
+				B5CAD4662890F7A4008A2A04 /* VocalViewModel.swift */,
+				B56446612891543C000A1E83 /* TimerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -212,12 +215,13 @@
 				B5CAD455288FEDFB008A2A04 /* ConfettiView.swift in Sources */,
 				B592848628858EBC00AA14C4 /* ContentView.swift in Sources */,
 				B5A592C1288C10C4006ED928 /* CriteriaModalView.swift in Sources */,
+				B56446622891543C000A1E83 /* TimerViewModel.swift in Sources */,
 				B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */,
 				B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */,
 				B5CAD45A288FEE7F008A2A04 /* BarView.swift in Sources */,
 				B5CAD463288FF389008A2A04 /* GlobalVariables.swift in Sources */,
 				B5CAD461288FF202008A2A04 /* TimerView.swift in Sources */,
-				B5CAD458288FEE57008A2A04 /* VocalViewModel.swift in Sources */,
+				B5CAD4672890F7A4008A2A04 /* VocalViewModel.swift in Sources */,
 				B5CAD450288FDB47008A2A04 /* VocalTone.mlmodel in Sources */,
 				B5CAD45D288FEEB0008A2A04 /* SoundManager.swift in Sources */,
 				B5CAD45F288FF195008A2A04 /* ColorExtension.swift in Sources */,

@@ -23,8 +23,9 @@ struct ContentView: View {
     @State var offsetMove: CGFloat = -400
     @State var number = 0
         
-    @StateObject var vocalViewModel = VocalViewModel()
+    @StateObject var vocalViewModel = VocalViewModel(timerViewModel: TimerViewModel())
     @StateObject var gv = GlobalVariables()
+    
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
@@ -193,7 +194,7 @@ struct ContentView: View {
             }
             
             if gv.toggleShowResult {
-                ResultModalView(speakingPace: 0, wordFillers: 0,gv: gv)
+                ResultModalView(speakingPace: 0, wordFillers: 0, gv: gv)
                     .onAppear {
                         vocalViewModel.calculateWordsPerMinute()
 //                        wordFillersDetection()

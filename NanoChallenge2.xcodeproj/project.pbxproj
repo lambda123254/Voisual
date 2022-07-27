@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B56446622891543C000A1E83 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56446612891543C000A1E83 /* TimerViewModel.swift */; };
+		B564466428915AE0000A1E83 /* ResultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564466328915AE0000A1E83 /* ResultManager.swift */; };
 		B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */; };
 		B592848628858EBC00AA14C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592848528858EBC00AA14C4 /* ContentView.swift */; };
 		B592848828858EBD00AA14C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B592848728858EBD00AA14C4 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		B56446612891543C000A1E83 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		B564466328915AE0000A1E83 /* ResultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultManager.swift; sourceTree = "<group>"; };
 		B592848028858EBC00AA14C4 /* NanoChallenge2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoChallenge2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge2App.swift; sourceTree = "<group>"; };
 		B592848528858EBC00AA14C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				B5CAD45C288FEEB0008A2A04 /* SoundManager.swift */,
 				B5CAD45E288FF195008A2A04 /* ColorExtension.swift */,
+				B564466328915AE0000A1E83 /* ResultManager.swift */,
 			);
 			path = Ultilities;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				B592848628858EBC00AA14C4 /* ContentView.swift in Sources */,
 				B5A592C1288C10C4006ED928 /* CriteriaModalView.swift in Sources */,
 				B56446622891543C000A1E83 /* TimerViewModel.swift in Sources */,
+				B564466428915AE0000A1E83 /* ResultManager.swift in Sources */,
 				B5A592CC288E29CB006ED928 /* ResultModalView.swift in Sources */,
 				B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */,
 				B5CAD45A288FEE7F008A2A04 /* BarView.swift in Sources */,

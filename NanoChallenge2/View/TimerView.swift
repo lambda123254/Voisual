@@ -50,6 +50,7 @@ struct TimerView: View {
 ////                        timer.invalidate()
 ////                    }
 //                }
+                second = timerViewModel.second
                 timerViewModel.calulateTimer()
                 
             }

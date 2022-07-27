@@ -23,7 +23,7 @@ struct ContentView: View {
     @State var offsetMove: CGFloat = -400
     @State var number = 0
         
-    @StateObject var vocalViewModel = VocalViewModel(timerViewModel: TimerViewModel())
+    @StateObject var vocalViewModel = VocalViewModel()
     @StateObject var gv = GlobalVariables()
     
     var body: some View {

@@ -22,10 +22,10 @@ class TimerViewModel: ObservableObject {
             else {
                 self.second += 1
             }
-            print("timer run")
         }
     }
     func stopTimer() {
         timer.invalidate()
     }
+
 }

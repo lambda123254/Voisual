@@ -32,4 +32,11 @@ extension Color {
             opacity: Double(a) / 255
         )
     }
+    
+    static var appRed: Color {
+        return Color.init(hex: "630000")
+    }
+    static var appWhite: Color {
+        return Color.init(hex: "EDEADC")
+    }
 }

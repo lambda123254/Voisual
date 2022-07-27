@@ -17,7 +17,7 @@ struct TimerView: View {
         Text("\(minuteRound)\(minute):\(secondRound)\(second)")
             .foregroundColor(.white)
             .font(.system(size: 40, weight: .bold, design: .default))
-            .background(Circle().fill(Color(hex: "630000")).frame(width: 200, height: 200, alignment:.center))
+            .background(Circle().fill(Color.appRed).frame(width: 200, height: 200, alignment:.center))
             .onReceive(timer) { input in
                 if second == 0 {
                     secondRound = "0"

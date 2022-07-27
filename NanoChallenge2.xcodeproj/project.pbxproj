@@ -78,7 +78,7 @@
 				B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */,
 				B5CAD45B288FEEA1008A2A04 /* Ultilities */,
 				B5CAD451288FEDA8008A2A04 /* View */,
-				B5CAD453288FEDB4008A2A04 /* Viewmodel */,
+				B5CAD453288FEDB4008A2A04 /* ViewModel */,
 				B592848728858EBD00AA14C4 /* Assets.xcassets */,
 				B5CAD456288FEE1E008A2A04 /* MLModel */,
 				B592848928858EBD00AA14C4 /* Preview Content */,
@@ -107,13 +107,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B5CAD453288FEDB4008A2A04 /* Viewmodel */ = {
+		B5CAD453288FEDB4008A2A04 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				B5CAD457288FEE57008A2A04 /* VocalViewModel.swift */,
 				B5CAD462288FF389008A2A04 /* GlobalVariables.swift */,
 			);
-			path = Viewmodel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B5CAD456288FEE1E008A2A04 /* MLModel */ = {

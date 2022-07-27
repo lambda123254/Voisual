@@ -10,6 +10,12 @@ import Speech
 import AVKit
 import Accelerate
 import SoundAnalysis
+import SwiftUI
+
+protocol SoundManagerProtocol {
+    func barOutput(arr: [Float])
+}
+
 class SoundManager {
     var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
     var recRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -25,7 +31,10 @@ class SoundManager {
     var averagePowerForChannel1: Float = 0
     let analysisQueue = DispatchQueue(label: "com.apple.AnalysisQueue")
     var resultObserver = ResultsObserver()
-
+    
+    var barValue: Float = 0.0
+    var barArr: [Float] = []
+    var delegate: SoundManagerProtocol?
     func startRecording() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -34,7 +43,7 @@ class SoundManager {
         } catch {
             print("audioSession properties werent set because of an error.")
         }
-        
+
         let inputNode = audioEngine.inputNode
         recRequest = SFSpeechAudioBufferRecognitionRequest()
 
@@ -50,7 +59,6 @@ class SoundManager {
             if result != nil {
                 self.textString = (result?.bestTranscription.formattedString)!
                 isFinal = (result?.isFinal)!
-                print(self.textString)
             }
 
             if error != nil || isFinal {
@@ -65,7 +73,7 @@ class SoundManager {
         inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
         analyzer = SNAudioStreamAnalyzer(format: inputFormat)
         //======================
-        
+
         //AI Detection
         do {
             let request = try SNClassifySoundRequest(mlModel: MLModel(contentsOf: soundClassifier.urlOfModelInThisBundle))
@@ -75,43 +83,42 @@ class SoundManager {
             return
         }
         // ==========================
-        
-        
-        
+
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         let barCountMax = 34
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, time) in
             self.audioMetering(buffer: buffer)
-//            barValue = 550 + averagePowerForChannel0
-//            if barValue < 90 {
-//                barValue = 10
-//            }
-//            else {
-//                barValue /= 4
-//            }
-//
-//            if barArr.count > barCountMax{
-//                barArr.removeFirst()
-//            }
-//            else {
-//                barArr.append(barValue)
-//            }
+            self.barValue = 550 + self.averagePowerForChannel0
+            if self.barValue < 90 {
+                self.barValue = 10
+            }
+            else {
+                self.barValue /= 4
+            }
+
+            if self.barArr.count > barCountMax{
+                self.barArr.removeFirst()
+            }
+            else {
+                self.barArr.append(self.barValue)
+            }
+//            print(self.barArr)
+            self.delegate?.barOutput(arr: self.barArr)
             recRequest.append(buffer)
-            
             self.analysisQueue.async {
                 self.analyzer.analyze(buffer, atAudioFramePosition: time.sampleTime)
             }
-            
-        }
 
-        audioEngine.prepare()
+        }
         
+        audioEngine.prepare()
+
         do {
             try audioEngine.start()
         } catch {
             print("audioEngine couldnt start because of an error.")
         }
-        
+
     }
     private func audioMetering(buffer:AVAudioPCMBuffer) {
         buffer.frameLength = 1024
@@ -127,7 +134,7 @@ class SoundManager {
             averagePowerForChannel0 = (self.LEVEL_LOWPASS_TRIG*v) + ((1-self.LEVEL_LOWPASS_TRIG)*self.averagePowerForChannel0)
             self.averagePowerForChannel1 = self.averagePowerForChannel0
         }
-        
+
         if buffer.format.channelCount > 1 {
             let samples = buffer.floatChannelData![1]
             var avgValue:Float32 = 0
@@ -145,9 +152,9 @@ class ResultsObserver: NSObject, SNResultsObserving {
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult,
             let classificationFlat = result.classifications.first else { return }
-        
+
         let classificationOther = result.classifications[1]
-        
+
         let confidenceFlat = classificationFlat.confidence * 100.0
         let confidenceOther = classificationOther.confidence * 100.0
         if confidenceFlat > 80 {
@@ -156,6 +163,24 @@ class ResultsObserver: NSObject, SNResultsObserving {
         if confidenceOther > 80 {
 
         }
-        
+
+    }
+}
+
+struct TestSoundManager: View {
+    @Binding var number: [Float]
+    var sm = SoundManager()
+    var body: some View {
+        Button("") {
+        }
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                number.append(Float(Int.random(in: 20...100)))
+
+            }
+        }
+    }
+    func calculate() {
+        number.append(0)
     }
 }

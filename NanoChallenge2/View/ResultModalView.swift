@@ -29,10 +29,12 @@ struct ResultModalView: View {
     var overallResultString = ""
     var overallScore = 0
     var overallResultColor = Color.init(hex: "ffffff")
-    @StateObject var gv = GlobalVariables()
-    init(speakingPace: Int, wordFillers: Int) {
+    var gv: GlobalVariables
+    
+    init(speakingPace: Int, wordFillers: Int, gv: GlobalVariables) {
         self.speakingPace = speakingPace
         self.wordFillers = wordFillers
+        self.gv = gv
         if speakingPace <= 100 || speakingPace > 150 && speakingPace < 400 {
             speakingPaceColor = Color.red
             speakingPaceScore = 10
@@ -61,7 +63,6 @@ struct ResultModalView: View {
             wordFillersScore = 30
         }
         overallScore = speakingPaceScore + wordFillersScore
-        print(overallScore)
         switch overallScore {
         case 0...12:
             overallResultString = "Awful"

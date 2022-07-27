@@ -9,4 +9,6 @@ import Foundation
 
 class GlobalVariables: ObservableObject {
     @Published var toggleShowResult = false
+    @Published var barArr: [Float] = []
+    @Published var number: Int = 0
 }

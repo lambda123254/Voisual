@@ -15,106 +15,14 @@ import HalfASheet
 struct ContentView: View {
     
     @State var textArr: [String] = []
-
-    @State var barValue: Float = 0.0
-    @State var barArr: [Float] = []
-        
+    
     @State var toggleRecordButton = false
     @State var toggleShowResult = false
     @State var toggleCriteriaView = false
     @State var criteriaTitle = ""
     @State var offsetMove: CGFloat = -400
-    
-    @State var sm = SoundManager()
-
-    @State var wfArr: [String] = [
-        "absolutely",
-        "actual",
-        "actually",
-        "amazing",
-        "anyway",
-        "apparently",
-        "approximately",
-        "badly",
-        "basically",
-        "begin",
-        "certainly",
-        "clearly",
-        "completely",
-        "definitely",
-        "easily",
-        "effectively",
-        "entirely",
-        "especially",
-        "essentially",
-        "exactly",
-        "extremely",
-        "fairly",
-        "frankly",
-        "frequently",
-        "fully",
-        "generally",
-        "hardly",
-        "heavily",
-        "highly",
-        "hopefully",
-        "just",
-        "largely",
-        "like",
-        "literally",
-        "maybe",
-        "might",
-        "most",
-        "mostly",
-        "much",
-        "necessarily",
-        "nicely",
-        "obviously",
-        "ok",
-        "okay",
-        "particularly",
-        "perhaps",
-        "possibly",
-        "practically",
-        "precisely",
-        "primarily",
-        "probably",
-        "quite",
-        "rather",
-        "real",
-        "really",
-        "relatively",
-        "right",
-        "seriously",
-        "significantly",
-        "simply",
-        "slightly",
-        "so",
-        "specifically",
-        "start",
-        "strongly",
-        "stuff",
-        "surely",
-        "things",
-        "too",
-        "totally",
-        "truly",
-        "try",
-        "typically",
-        "ultimately",
-        "usually",
-        "very",
-        "virtually",
-        "well",
-        "whatever",
-        "whenever",
-        "wherever",
-        "whoever",
-        "widely"
-      ]
-    
-    @State var wpm = 0
-    @State var wf = 0
+    @State var number = 0
+        
     @StateObject var vocalViewModel = VocalViewModel()
     @StateObject var gv = GlobalVariables()
     var body: some View {
@@ -129,7 +37,7 @@ struct ContentView: View {
                     //AUDIO GRAPH
                     HStack {
                         Spacer()
-                        ForEach(barArr, id: \.self) { value in
+                        ForEach(vocalViewModel.barArr, id: \.self) { value in
                             BarView(barHeight: value)
                         }
                     }
@@ -141,7 +49,7 @@ struct ContentView: View {
             VStack {
                 HStack {
                     if !toggleRecordButton {
-                        Text("**Home**")
+                        Text("**Practice**")
                             .padding()
                             .padding(.top, 20)
                             .font(.largeTitle)
@@ -167,7 +75,7 @@ struct ContentView: View {
                 VStack {
                     HStack {
                         Text(Image(systemName: "speedometer"))
-                            .foregroundColor(Color.init(hex: "630000"))
+                            .foregroundColor(Color.appRed)
                             .font(Font.system(size: 30))
                         Text("Speaking Pace")
                             .foregroundColor(.black)
@@ -175,7 +83,7 @@ struct ContentView: View {
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10))
-                    .foregroundColor(Color.init(hex: "EDEADC"))
+                    .foregroundColor(Color.appWhite)
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
@@ -187,7 +95,7 @@ struct ContentView: View {
 
                     HStack {
                         Text(Image(systemName: "w.circle"))
-                            .foregroundColor(Color.init(hex: "630000"))
+                            .foregroundColor(Color.appRed)
                             .font(Font.system(size: 30))
                         Text("Word Fillers")
                             .foregroundColor(.black)
@@ -195,7 +103,7 @@ struct ContentView: View {
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10))
-                    .foregroundColor(Color.init(hex: "EDEADC"))
+                    .foregroundColor(Color.appWhite)
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
@@ -207,7 +115,7 @@ struct ContentView: View {
                     
                     HStack {
                         Text(Image(systemName: "waveform.circle"))
-                            .foregroundColor(Color.init(hex: "630000"))
+                            .foregroundColor(Color.appRed)
                             .font(Font.system(size: 30))
                         Text("Vocal Tone")
                             .foregroundColor(.black)
@@ -215,7 +123,7 @@ struct ContentView: View {
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10))
-                    .foregroundColor(Color.init(hex: "EDEADC"))
+                    .foregroundColor(Color.appWhite)
                     .padding(5)
                     .padding(.leading, 12)
                     .padding(.trailing, 12)
@@ -236,18 +144,15 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        if sm.audioEngine.isRunning {
-                            sm.recRequest?.endAudio()
-                            sm.audioEngine.stop()
-                            sm.recTask?.cancel()
+                        if toggleRecordButton {
+                            vocalViewModel.stopSoundManager()
                             withAnimation(.easeInOut(duration: 0.3)){
                                 toggleRecordButton.toggle()
                                 gv.toggleShowResult.toggle()
-
                             }
                         } else {
                             print("Start Recording")
-                            sm.startRecording()
+                            vocalViewModel.startSoundManager()
                             withAnimation(.easeInOut(duration: 0.3)){
                                 toggleRecordButton.toggle()
                             }
@@ -288,10 +193,9 @@ struct ContentView: View {
             }
             
             if gv.toggleShowResult {
-                ResultModalView(speakingPace: wpm, wordFillers: wf)
+                ResultModalView(speakingPace: 0, wordFillers: 0,gv: gv)
                     .onAppear {
-//                        textArr = textString.split(separator: " ").map({String($0)})
-//                        calculateWordsPerMinute()
+                        vocalViewModel.calculateWordsPerMinute()
 //                        wordFillersDetection()
                     }
             }
@@ -313,5 +217,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(GlobalVariables())
     }
 }

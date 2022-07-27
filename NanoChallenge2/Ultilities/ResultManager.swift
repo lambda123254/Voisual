@@ -30,7 +30,7 @@ class ResultManager {
 
     func calculateWordsPerMinute(){
         textArr = sm.textString.split(separator: " ").map({String($0)})
-        wpm = textArr.count * 60 / udm.getTimerSecond()
+        wpm = textArr.count * 60 / ShareableVariable.secondTimer
         self.delegate?.resultWpm(result: wpm)
     }
 }

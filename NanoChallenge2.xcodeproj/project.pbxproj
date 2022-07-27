@@ -10,6 +10,7 @@
 		B56446622891543C000A1E83 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56446612891543C000A1E83 /* TimerViewModel.swift */; };
 		B564466428915AE0000A1E83 /* ResultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564466328915AE0000A1E83 /* ResultManager.swift */; };
 		B564466628916D22000A1E83 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564466528916D22000A1E83 /* UserDefaultManager.swift */; };
+		B56446682891728F000A1E83 /* ShareableVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56446672891728F000A1E83 /* ShareableVariable.swift */; };
 		B592848428858EBC00AA14C4 /* NanoChallenge2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */; };
 		B592848628858EBC00AA14C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592848528858EBC00AA14C4 /* ContentView.swift */; };
 		B592848828858EBD00AA14C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B592848728858EBD00AA14C4 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		B56446612891543C000A1E83 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B564466328915AE0000A1E83 /* ResultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultManager.swift; sourceTree = "<group>"; };
 		B564466528916D22000A1E83 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		B56446672891728F000A1E83 /* ShareableVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareableVariable.swift; sourceTree = "<group>"; };
 		B592848028858EBC00AA14C4 /* NanoChallenge2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoChallenge2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B592848328858EBC00AA14C4 /* NanoChallenge2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoChallenge2App.swift; sourceTree = "<group>"; };
 		B592848528858EBC00AA14C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				B5CAD45E288FF195008A2A04 /* ColorExtension.swift */,
 				B564466328915AE0000A1E83 /* ResultManager.swift */,
 				B564466528916D22000A1E83 /* UserDefaultManager.swift */,
+				B56446672891728F000A1E83 /* ShareableVariable.swift */,
 			);
 			path = Ultilities;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				B5CAD450288FDB47008A2A04 /* VocalTone.mlmodel in Sources */,
 				B5CAD45D288FEEB0008A2A04 /* SoundManager.swift in Sources */,
 				B5CAD45F288FF195008A2A04 /* ColorExtension.swift in Sources */,
+				B56446682891728F000A1E83 /* ShareableVariable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,6 @@ struct TimerView: View {
     @State var minuteRound = "0"
     @State var secondRound = "0"
     var udm = UserDefaultManager()
-
     @State var timer: Timer?
     @StateObject var timerViewModel = TimerViewModel()
 
@@ -63,5 +62,6 @@ struct TimerView: View {
 extension TimerView: TimerViewModelProtocol {
     func getSecond(second: Int) {
         udm.setTimerSecond(second: second)
+        ShareableVariable.secondTimer = second
     }
 }

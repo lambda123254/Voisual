@@ -27,7 +27,7 @@ class TimerViewModel: ObservableObject {
                 self.second += 1
             }
             self.delegate?.getSecond(second: second)
-            
+            print("timer running")
         }
     }
     func stopTimer() {

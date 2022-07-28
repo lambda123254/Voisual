@@ -54,12 +54,15 @@ struct ContentView: View {
                             .padding()
                             .padding(.top, 20)
                             .font(.largeTitle)
+                            .foregroundColor(.black)
+
                     }
                     else {
                         Text("**Recording**")
                             .padding()
                             .padding(.top, 20)
                             .font(.largeTitle)
+                            .foregroundColor(.black)
                     }
 
                     Spacer()
@@ -69,6 +72,8 @@ struct ContentView: View {
                     Text("Your speech will be scored based on this criteria")
                         .padding(.leading)
                         .font(.title3)
+                        .foregroundColor(.black)
+
                     Spacer()
                 }
                 .offset(x: toggleRecordButton ? offsetMove : 0, y: 0)
@@ -194,11 +199,7 @@ struct ContentView: View {
             }
             
             if gv.toggleShowResult {
-                ResultModalView(speakingPace: 0, wordFillers: 0, gv: gv)
-                    .onAppear {
-                        vocalViewModel.calculateWordsPerMinute()
-//                        wordFillersDetection()
-                    }
+                ResultModalView(gv: gv)
             }
             
             HalfASheet(isPresented: $toggleCriteriaView) {

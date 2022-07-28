@@ -72,6 +72,7 @@ class SoundManager {
         //AI Detection
         inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
         analyzer = SNAudioStreamAnalyzer(format: inputFormat)
+
         //======================
 
         //AI Detection
@@ -151,17 +152,16 @@ class SoundManager {
 class ResultsObserver: NSObject, SNResultsObserving {
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult,
-            let classificationFlat = result.classifications.first else { return }
+            let classification = result.classifications.first else { return }
 
-        let classificationOther = result.classifications[1]
-
-        let confidenceFlat = classificationFlat.confidence * 100.0
-        let confidenceOther = classificationOther.confidence * 100.0
-        if confidenceFlat > 80 {
-
-        }
-        if confidenceOther > 80 {
-
+        let identifier = classification.identifier
+        if classification.confidence * 100 > 80  {
+            if identifier == "flatTone" {
+                ShareableVariable.shared.flatToneCounter += 1
+            }
+            else {
+                ShareableVariable.shared.otherToneCounter += 1
+            }
         }
 
     }

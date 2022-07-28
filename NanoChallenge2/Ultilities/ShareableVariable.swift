@@ -8,6 +8,15 @@
 import Foundation
 
 class ShareableVariable {
-    static var secondTimer = 0
-
+    
+    static var shared = ShareableVariable()
+    
+    private init() {}
+    
+    var secondTimer = 0
+    var wpm = 0
+    var wordFillers = 0
+    var wfCounter = 0
+    var flatToneCounter = 0
+    var otherToneCounter = 0
 }

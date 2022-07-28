@@ -12,9 +12,15 @@ class VocalViewModel: ObservableObject {
     @Published var otherToneCounter: Float = 0.0
     @Published var wf = 0
     @Published var barArr: [Float] = []
+<<<<<<< Updated upstream
     var wpm = 0
+=======
+    @Published var wpm = 0
+>>>>>>> Stashed changes
     var sm = SoundManager()
+    var rm: ResultManager
     var textArr: [String] = []
+<<<<<<< Updated upstream
     @StateObject var timerViewModel = TimerViewModel()
 
     var wfArr: [String] = [
@@ -102,17 +108,27 @@ class VocalViewModel: ObservableObject {
         "whoever",
         "widely"
       ]
+=======
+    
+    init() {
+        rm = ResultManager(sm: sm)
+        sm.delegate = self
+    }
+>>>>>>> Stashed changes
 
     func startSoundManager() {
-        sm.delegate = self
         sm.startRecording()
     }
     
     func stopSoundManager() {
+        sm.barArr = []
         sm.recRequest?.endAudio()
         sm.audioEngine.stop()
         sm.recTask?.cancel()
+        rm.calculateWordsPerMinute()
+        rm.wordFillersDetection()
     }
+<<<<<<< Updated upstream
     func calculateWordsPerMinute() {
         textArr = sm.textString.split(separator: " ").map({String($0)})
         print(timerViewModel.second)
@@ -128,6 +144,9 @@ class VocalViewModel: ObservableObject {
 //            }
 //        }
 //    }
+=======
+
+>>>>>>> Stashed changes
 }
 
 extension VocalViewModel: SoundManagerProtocol {
@@ -139,3 +158,7 @@ extension VocalViewModel: SoundManagerProtocol {
 }
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

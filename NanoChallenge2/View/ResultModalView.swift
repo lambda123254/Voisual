@@ -259,6 +259,10 @@ struct ResultModalView: View {
             print("Tapped")
             gv.toggleShowResult.toggle()
         }
+        .onDisappear {
+            ShareableVariable.shared.resetShared()
+
+        }
 
     }
 

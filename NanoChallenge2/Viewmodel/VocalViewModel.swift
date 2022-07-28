@@ -10,11 +10,12 @@ import SwiftUI
 class VocalViewModel: ObservableObject {
     @Published var flatToneCounter: Float = 0.0
     @Published var otherToneCounter: Float = 0.0
-    var wpm = 0
     @Published var wf = 0
     @Published var barArr: [Float] = []
+    var wpm = 0
     var sm = SoundManager()
     var textArr: [String] = []
+    @StateObject var timerViewModel = TimerViewModel()
 
     var wfArr: [String] = [
         "absolutely",
@@ -114,6 +115,7 @@ class VocalViewModel: ObservableObject {
     }
     func calculateWordsPerMinute() {
         textArr = sm.textString.split(separator: " ").map({String($0)})
+        print(timerViewModel.second)
 //        wpm = textArr.count * 60 / second
     }
 //
@@ -135,3 +137,5 @@ extension VocalViewModel: SoundManagerProtocol {
         }
     }
 }
+
+

@@ -30,10 +30,14 @@ struct CriteriaModalView: View {
                     .foregroundColor(Color(hex: "630000"))
                 Text("**\(title)**")
                     .font(.system(size: 20))
+                    .foregroundColor(.black)
+
                 Text("\(contentString)")
                     .font(.system(size: 17))
                     .multilineTextAlignment(.center)
                     .padding()
+                    .foregroundColor(.black)
+
                 Spacer()
             }
         }
